@@ -1,14 +1,17 @@
 let moneydiv = document.getElementById("money");
 let gensdiv = document.getElementById("generators");
 let facsdiv = document.getElementById("factories");
+let mgrdiv = document.getElementById("managers");
 
 let money = 0;
 let gens = 0;
 let facs = 0;
+let mgrs = 0;
 
 function tick(): void {
     money += gens;
     gens += facs;
+    facs += mgrs;
 
     if(moneydiv) {
         moneydiv.innerHTML = money + "";
@@ -20,6 +23,10 @@ function tick(): void {
 
     if(facsdiv) {
         facsdiv.innerHTML = facs + "";
+    }
+
+    if(mgrdiv) {
+        mgrdiv.innerHTML = mgrs + "";
     }
 }
 
@@ -57,6 +64,21 @@ function buyfac(): void {
 
         if(facsdiv) {
             facsdiv.innerHTML = facs + "";
+        }
+    }
+}
+
+function buymgr(): void {
+    if(money >= 1e6) {
+        money -= 1e6;
+        mgrs++;
+
+        if(moneydiv) {
+            moneydiv.innerHTML = money + "";
+        }
+
+        if(mgrdiv) {
+            mgrdiv.innerHTML = mgrs + "";
         }
     }
 }

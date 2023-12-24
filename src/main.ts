@@ -2,16 +2,19 @@ let moneydiv = document.getElementById("money");
 let gensdiv = document.getElementById("generators");
 let facsdiv = document.getElementById("factories");
 let mgrdiv = document.getElementById("managers");
+let hrdiv = document.getElementById("hrs");
 
 let money = 0;
 let gens = 0;
 let facs = 0;
 let mgrs = 0;
+let hrs = 0;
 
 function tick(): void {
     money += gens;
     gens += facs;
     facs += mgrs;
+    mgrs += hrs;
 
     if(moneydiv) {
         moneydiv.innerHTML = money + "";
@@ -27,6 +30,10 @@ function tick(): void {
 
     if(mgrdiv) {
         mgrdiv.innerHTML = mgrs + "";
+    }
+
+    if(hrdiv) {
+        hrdiv.innerHTML = hrs + "";
     }
 }
 
@@ -79,6 +86,21 @@ function buymgr(): void {
 
         if(mgrdiv) {
             mgrdiv.innerHTML = mgrs + "";
+        }
+    }
+}
+
+function buyhr(): void {
+    if(money >= 1e9) {
+        money -= 1e9;
+        hrs++;
+
+        if(moneydiv) {
+            moneydiv.innerHTML = money + "";
+        }
+
+        if(hrdiv) {
+            hrdiv.innerHTML = hrs + "";
         }
     }
 }

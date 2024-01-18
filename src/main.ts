@@ -1,4 +1,3 @@
-{
 let moneydiv = document.getElementById("money");
 let gensdiv = document.getElementById("generators");
 let facsdiv = document.getElementById("factories");
@@ -107,4 +106,3 @@ function buyhr(): void {
 }
 
 setInterval(tick, 1e3);
-}

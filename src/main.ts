@@ -151,11 +151,33 @@ function load() {
                 facs = data.facs;
                 mgrs = data.mgrs;
                 hrs = data.hrs;
+
+                if(moneydiv) {
+                    moneydiv.innerHTML = money + "";
+                }
+
+                if(gensdiv) {
+                    gensdiv.innerHTML = gens + "";
+                }
+
+                if(facsdiv) {
+                    facsdiv.innerHTML = facs + "";
+                }
+
+                if(mgrdiv) {
+                    mgrdiv.innerHTML = mgrs + "";
+                }
+
+                if(hrdiv) {
+                    hrdiv.innerHTML = hrs + "";
+                }
             } catch(e) {
                 console.error(e);
             }
         }
+        fileReader.readAsBinaryString(file);
     }
+    input.click();
 }
 
 setInterval(tick, 1e3);

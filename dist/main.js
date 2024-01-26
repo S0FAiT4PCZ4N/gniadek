@@ -130,6 +130,7 @@ let hrdiv = document.getElementById("hrs");
         };
         let json = JSON.stringify(data);
         json = btoa(json);
+        json += "32";
         let file = new Blob([json], { type: 'application/json' });
         let a = document.createElement('a');
         let filename = prompt("Podaj nazwę save'a");
@@ -150,6 +151,11 @@ let hrdiv = document.getElementById("hrs");
                 let json = fileReader.result;
                 try {
                     json = json + "";
+                    let check = json.slice(json.length - 2);
+                    if (check != "32") {
+                        return;
+                    }
+                    json = json.slice(0, json.length - 2);
                     json = atob(json);
                     let data = JSON.parse(json);
                     money = data.money;

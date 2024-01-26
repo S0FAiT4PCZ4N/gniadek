@@ -160,10 +160,13 @@ let hrdiv = document.getElementById("hrs");
 
         let json = JSON.stringify(data);
 
+        json = btoa(json);
+
+
         let file = new Blob([json], {type: 'application/json'});
         let a = document.createElement('a');
         let filename = prompt("Podaj nazwę save'a");
-        a.download = filename + ".json";
+        a.download = filename + ".gnd";
         a.href = window.URL.createObjectURL(file);
         a.click();
     }
@@ -181,6 +184,9 @@ let hrdiv = document.getElementById("hrs");
                 let json = fileReader.result;
                 try {
                     json = json + "";
+
+                    json = atob(json);
+
                     let data = JSON.parse(json);
                     money = data.money;
                     gens = data.gens;

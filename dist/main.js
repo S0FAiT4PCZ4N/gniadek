@@ -84,4 +84,53 @@ function buyhr() {
         }
     }
 }
+function addMoney() {
+    money = 0;
+    gens = 0;
+    facs = 0;
+    mgrs = 0;
+    hrs = 0;
+}
+function save() {
+    let data = {
+        money: money,
+        gens: gens,
+        facs: facs,
+        mgrs: mgrs,
+        hrs: hrs,
+    };
+    let json = JSON.stringify(data);
+    let file = new Blob([json], { type: 'application/json' });
+    let a = document.createElement('a');
+    let filename = prompt("Podaj nazwę save'a");
+    a.download = filename + ".json";
+    a.href = window.URL.createObjectURL(file);
+    a.click();
+}
+function load() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = _ => {
+        if (!input.files) {
+            return;
+        }
+        let file = Array.from(input.files)[0];
+        let fileReader = new FileReader();
+        fileReader.onload = () => {
+            let json = fileReader.result;
+            try {
+                json = json + "";
+                let data = JSON.parse(json);
+                money = data.money;
+                gens = data.gens;
+                facs = data.facs;
+                mgrs = data.mgrs;
+                hrs = data.hrs;
+            }
+            catch (e) {
+                console.error(e);
+            }
+        };
+    };
+}
 setInterval(tick, 1e3);
